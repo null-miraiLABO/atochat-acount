@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>新規登録</title>
+	<meta name="viewport" content="width=380px">
+	<style>
+		div {
+			margin: 1em;
+		}
+
+		.err {
+			color: #ff0000;
+		}
+
+	</style>
+</head>
+
+<body>
+		<h1>新規登録</h1>
+		<form method="post" enctype="multipart/form-data">
+			{{Err}}
+			<div>
+				お名前:<br>
+				<input type="text" name="name" value="{{name}}"><br>
+			</div>
+			<div>
+				メール:<br>
+				<input type="text" name="mail" value="{{mail}}"><br>
+			</div>
+			<div>
+				パスワード:<br>
+				<textarea name="pass">{{pass}}</textarea><br>
+			</div>
+			<div>
+				<input type="submit" name="chk" value="確認画面へ"><br>
+			</div>
+		</form>
+
+
+		<footer>
+
+		</footer>
+</body>
+
+</html>

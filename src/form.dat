@@ -1,0 +1,17 @@
+	<form method="post">
+		{{Err}}
+		<p>
+			ログインするとページが切り替わります。
+		</p>
+		<p>
+			ID:<br>
+			<input type="text" name="userid" value="{{userid}}"><br>
+		</p>
+		<p>
+			pass:<br>
+			<input type="password" name="passwd" value=""><br>
+		</p>
+		<p>
+			<input type="submit" name="chk" value="ログイン"><br>
+		</p>
+	</form>

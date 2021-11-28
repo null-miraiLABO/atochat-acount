@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>セッションログイン</title>
+<style>
+	.err
+	{
+		color:#ff0000;
+	}
+</style>
+</head>
+
+<body>
+
+	<h2>セッションログイン</h2>
+	<p>
+		sessionを使ってログインシステムを作りましょう。<br>
+	</p>
+
+	{{ログインフォーム}}
+	<p>
+		{{ステータスメッセージ}}
+	</p>
+	<p>
+		リンク先のページでも、ログインできているか確認しましょう<br>
+		<a href="02.php">ログイン確認ページ</a>
+	</p>
+	<p><a href="entry/">新規登録</a></p>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>セッションログイン</title>
+</head>
+
+<body>
+	
+	<h2>セッションログイン</h2>
+	<p>
+		あなたはいま…
+	</p>
+	<p>
+		{{ステータス}}
+	</p>
+	<p>
+		<a href='index.php'>戻る</a>
+	</p>
+
+</body>
+</html>
