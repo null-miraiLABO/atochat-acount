@@ -15,6 +15,8 @@ $HTML_FIN_DAT='fin.dat';
 if($_SERVER["REQUEST_METHOD"]=='POST'){
 
 	if(isset($_POST['chk'])){
+		$_POST['userid']=$_SESSION['userid'];
+		$_POST['login']=$_SESSION['login'];
 		$_SESSION=$_POST;
 	}
 
@@ -30,30 +32,19 @@ if($_SERVER["REQUEST_METHOD"]=='POST'){
 
 //エラーチェック
 $Err='';
-$userid=$_SESSION['userid'];
 //確認画面、終了画面を表示しようとしているときはエラーチェックします
 if(isset($_GET['chk']) || isset($_GET['fin']))
 {
-	//SeChk()を使っていちいちissetをかかずエラーをチェックしてます
-	//エラーチェックは必ずセッションに入っているデータからやりましょ。
-	if(SeChk('name')=='')
-		$Err.='<div class="err">※名前を入力してください</div>';
-
-	if(SeChk('mail')=='')
-		$Err.='<div class="err">※メールアドレスを入力してください</div>';
-	else if(!preg_match('/^([a-zA-Z0-9])+([a-zA-Z0-9\.+_-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/',SeChk('mail')) )
-		$Err.='<div class="err">※メールアドレスを確認してください</div>';
-	else
-	{
-		$db_maildata = queryrunpre("SELECT * FROM ".$dbtable." WHERE `mail` ='".$_SESSION["mail"]."'",null);
-		if(empty($db_maildata)){}
-		else{
-			$Err.='<div class="err">※使用済みのメールアドレスです</div>';
-		}
-	}
-
 	if(SeChk('pass')=='')
 		$Err.='<div class="err">※パスワードを入力してください</div>';
+
+	$db_id=$_SESSION["userid"];
+	$db_pass=md5($_SESSION["pass"].$_SESSION["userid"]);
+	$login_flag = queryrunpre("SELECT * FROM ".$dbtable." WHERE `mail`='".$db_id."' AND `pass`='".$db_pass."'",null);
+
+	if(empty($login_flag)){
+		$Err.='<div class="err">※PASSが一致しません</div>'.$db_pass;
+	}
 
 	if($Err!='')
 		unset($_GET);
@@ -74,6 +65,8 @@ foreach($_SESSION as $key=>$value){
 $SearchKey[]='{{Err}}';
 $SearchValue[]=$Err;
 
+
+
 //まずはdatの名前をいれる変数を用意して
 $loadname="";
 if(isset($_GET['chk'])){//確認画面だったら
@@ -85,7 +78,10 @@ if(isset($_GET['chk'])){//確認画面だったら
 	$usemail=str_replace('{{ip}}',$_SERVER['REMOTE_ADDR'],$usemail);
 	$usemail=preg_replace("/{{.*?}}/","",$usemail);
 
-	newdata($_SESSION["name"],$_SESSION["mail"],md5($_SESSION["pass"].$_SESSION["mail"]),date('Y/m/d H:i:s'),$_SERVER['REMOTE_ADDR']);
+	$dbwhere=" WHERE `mail` = :wheremail";
+  $queryParam[":wheremail"]=$_SESSION["userid"];
+  queryrunpre("DELETE FROM ".$dbtable.$dbwhere,$queryParam);
+
 	$_SESSION["pass"]="";
 
 	//何度も言うけど、本当はファイルロック処理をしないと
@@ -104,6 +100,15 @@ $usehtml=file_get_contents($loadname);
 $usehtml=str_replace($SearchKey,$SearchValue,$usehtml);
 $usehtml=preg_replace("/{{.*?}}/","",$usehtml);
 
+foreach($_SESSION as $key=>$value){
+	echo "key: ".$key." => ";
+	echo "val: ".$value."<br>";
+}
+
+$_SESSION['Err']='';
+
+echo var_dump($SearchKey)."<br>";
+echo var_dump($SearchValue)."<br>";
 echo $usehtml;
 
 //issetがメンチなので関数つくったった。

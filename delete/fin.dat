@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>退会</title>
+</head>
+
+<body>
+
+	<h2>退会</h2>
+	<p>
+		ご協力ありがとうございました。
+	</p>
+	<p>
+		<a href="/school/atochat/">ログイン画面に戻る</a>
+	</p>
+
+</body>
+</html>

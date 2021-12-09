@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>退会</title>
+<style>
+div
+{
+	margin:1em;
+}
+</style>
+</head>
+
+<body>
+
+	<h2>退会</h2>
+	<p>本当に退会してよろしいのですか？！</p>
+	<form method="post">
+		<input type="submit" name="return" value="戻る" ><input type="submit" name="fin" value="退会" >
+	</form>
+
+</body>
+</html>
+

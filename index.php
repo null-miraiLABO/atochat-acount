@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"]=='POST')
 
   if($_SESSION["Err"]==""){
     if(empty($login_flag)){
-      $_SESSION["Err"].='<div class="err">※PASSかIDが一致しません</div>'.$db_pass;
+      $_SESSION["Err"].='<div class="err">※PASSかIDが一致しません</div>';
     }
   }
 

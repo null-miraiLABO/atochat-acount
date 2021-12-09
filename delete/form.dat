@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>新規登録</title>
+	<title>退会</title>
 	<meta name="viewport" content="width=380px">
 	<style>
 		div {
@@ -18,27 +18,21 @@
 </head>
 
 <body>
-		<h1>新規登録</h1>
+		<h1>退会</h1>
+
+		<p>退会するには、パスワードをもう一度入力してください</p>
 
 		<form method="post" enctype="multipart/form-data">
 			{{Err}}
-			<div>
-				お名前:<br>
-				<input type="text" name="name" value="{{name}}"><br>
-			</div>
-			<div>
-				メール:<br>
-				<input type="text" name="mail" value="{{mail}}"><br>
-			</div>
 			<div>
 				パスワード:<br>
 				<input type="password" name="pass" value=""><br>
 			</div>
 			<div>
-				<input type="submit" name="chk" value="確認画面へ"><br>
+				<input type="submit" name="chk" value="次へ"><br>
 			</div>
 		</form>
-
+ajslgjl{{ooop}}gag
 		<p>
 			<a href="/school/atochat/">トップに戻る</a>
 		</p>
